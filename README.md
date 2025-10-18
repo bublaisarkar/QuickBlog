@@ -1,6 +1,9 @@
 📝 Quick Blog
 Live URL: https://quick-blog-neon-ten.vercel.app/
 
+<img width="1365" height="639" alt="image" src="https://github.com/user-attachments/assets/0eb90c9f-24fa-4683-9baa-17e90fe69ac0" />
+
+
 Quick Blog is a modern, responsive blog application built using the MERN (MongoDB, Express, React, Node.js) stack. It features public viewing of published posts and a secure, dedicated admin panel for content management and comment moderation.
 
 ✨ Key Features
