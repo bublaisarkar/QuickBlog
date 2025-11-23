@@ -9,19 +9,32 @@ const app = express();
 
 await connectDB();
 
-// Define the allowed frontend origin
-const allowedFrontendOrigin = 'https://quick-blog-neon-ten.vercel.app';
+// Define the list of allowed frontend origins
+// 1. The secure production URL.
+// 2. The local development URL (http://localhost:5173 or whatever your frontend uses).
+const allowedOrigins = [
+    'https://quick-blog-neon-ten.vercel.app',
+    'http://localhost:5173', // <-- ADDED FOR LOCAL DEVELOPMENT
+    'http://localhost:3000'  // Added for server-side testing (optional)
+];
 
+// Configure CORS dynamically
 app.use(cors({
-    // CORS fix is correctly implemented here
-    origin: allowedFrontendOrigin, 
+    origin: (origin, callback) => {
+        // Allow requests with no origin (like server-to-server or curl requests)
+        // and allow all origins in the allowedOrigins list.
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            // Block the request if the origin is not allowed
+            callback(new Error('Not allowed by CORS'), false);
+        }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true 
 }));
 
 // --- THE FIX FOR 413 (Content Too Large) ---
-// We explicitly set the request body size limit to 10MB (or whatever size is needed).
-// The default is usually around 100kb, which is too small for rich blog content.
 app.use(express.json({ limit: '10mb' }));
 
 // For form submissions, it's also good practice to increase the urlencoded limit
