@@ -13,7 +13,7 @@ await connectDB();
 // Instead of default cors(), we specify the origin.
 // This tells the browser: "Yes, https://quick-blog-neon-ten.vercel.app is allowed to talk to me."
 app.use(cors({
-    origin: 'https://quick-blog-neon-ten.vercel.app',
+    origin: 'https://quick-blog-server-two-opal.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true // Important if you send Auth tokens or Cookies
 }));
