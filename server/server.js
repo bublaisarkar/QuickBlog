@@ -9,13 +9,15 @@ const app = express();
 
 await connectDB();
 
-// --- THE FIX ---
-// Instead of default cors(), we specify the origin.
-// This tells the browser: "Yes, https://quick-blog-neon-ten.vercel.app is allowed to talk to me."
+// Define the allowed frontend origin
+const allowedFrontendOrigin = 'https://quick-blog-neon-ten.vercel.app';
+
 app.use(cors({
-    origin: 'https://quick-blog-server-two-opal.vercel.app',
+    // --- THE CRITICAL CHANGE ---
+    // This explicitly allows your frontend URL to access this API.
+    origin: allowedFrontendOrigin, 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true // Important if you send Auth tokens or Cookies
+    credentials: true 
 }));
 
 app.use(express.json());
