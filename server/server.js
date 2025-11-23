@@ -11,11 +11,8 @@ await connectDB();
 
 // Define the list of allowed frontend origins
 // 1. The secure production URL.
-// 2. The local development URL (http://localhost:5173 or whatever your frontend uses).
 const allowedOrigins = [
-    'https://quick-blog-neon-ten.vercel.app',
-    'http://localhost:5173', // <-- ADDED FOR LOCAL DEVELOPMENT
-    'http://localhost:3000'  // Added for server-side testing (optional)
+    'https://quick-blog-neon-ten.vercel.app'
 ];
 
 // Configure CORS dynamically
